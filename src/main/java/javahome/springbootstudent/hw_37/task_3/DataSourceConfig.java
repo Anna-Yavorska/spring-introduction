@@ -1,6 +1,6 @@
 package javahome.springbootstudent.hw_37.task_3;
 
-import com.zaxxer.hikari.HikariDataSource;
+//import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,12 +12,12 @@ public class DataSourceConfig {
     private static final String USERNAME = "pingwit";
     private static final String PASSWORD = "pingwit_password";
 
-    @Bean
-    public DataSource dataSource() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        HikariDataSource dataSource = new HikariDataSource();
+//        dataSource.setJdbcUrl(URL);
+//        dataSource.setUsername(USERNAME);
+//        dataSource.setPassword(PASSWORD);
+//        return dataSource;
+//    }
 }

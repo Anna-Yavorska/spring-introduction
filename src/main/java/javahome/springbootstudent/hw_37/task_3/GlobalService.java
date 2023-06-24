@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
 public class GlobalService {
     private final UserService userService;
     private final ApplicationContext applicationContext;
