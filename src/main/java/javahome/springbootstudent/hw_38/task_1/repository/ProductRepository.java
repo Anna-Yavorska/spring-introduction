@@ -1,6 +1,7 @@
-package javahome.springbootstudent.hw_38.task_1;
+package javahome.springbootstudent.hw_38.task_1.repository;
 
 import jakarta.annotation.PostConstruct;
+import javahome.springbootstudent.hw_38.task_1.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

@@ -1,5 +1,7 @@
-package javahome.springbootstudent.hw_38.task_1;
+package javahome.springbootstudent.hw_38.task_1.controller;
 
+import javahome.springbootstudent.hw_38.task_1.model.Product;
+import javahome.springbootstudent.hw_38.task_1.repository.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
