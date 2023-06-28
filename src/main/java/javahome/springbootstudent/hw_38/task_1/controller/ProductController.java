@@ -29,4 +29,9 @@ public class ProductController {
     public String deleteProduct(@PathVariable Integer id) {
         return productRepository.deleteProduct(id);
     }
+
+    @PostMapping
+    public Integer createProduct(@RequestBody Product productToCreate) {
+        return productRepository.createProduct(productToCreate);
+    }
 }
