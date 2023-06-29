@@ -35,5 +35,9 @@ public class ProductRepository {
         products.remove(id);
         return "Product with id=" + id + " deleted";
     }
+    public Integer createProduct(Product productToCreate){
+        products.put(productToCreate.id(), productToCreate);
+        return productToCreate.id();
+    }
 
 }
