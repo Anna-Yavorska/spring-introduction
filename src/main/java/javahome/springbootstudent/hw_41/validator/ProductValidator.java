@@ -1,6 +1,6 @@
-package javahome.springbootstudent.hw_40.validator;
+package javahome.springbootstudent.hw_41.validator;
 
-import javahome.springbootstudent.hw_40.controller.dto.ProductDTO;
+import javahome.springbootstudent.hw_41.controller.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;

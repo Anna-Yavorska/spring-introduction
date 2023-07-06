@@ -1,8 +1,8 @@
-package javahome.springbootstudent.hw_40.controller;
+package javahome.springbootstudent.hw_41.controller;
 
-import javahome.springbootstudent.hw_40.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_40.repository.model.Product;
-import javahome.springbootstudent.hw_40.service.ProductService;
+import javahome.springbootstudent.hw_41.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.hw_41.controller.dto.ProductDTO;
+import javahome.springbootstudent.hw_41.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -38,8 +38,13 @@ public class ProductController {
         return productService.createProduct(productToCreate);
     }
 
-    @GetMapping("/description")
-    public List<ProductDTO> searchByDescription(@RequestParam String description) {
-        return productService.searchByDescription(description);
+    @PutMapping("/{id}")
+    public ProductDTO update(@PathVariable Integer id, @RequestBody ProductDTO productToUpdate) {
+        return productService.updateProduct(id, productToUpdate);
+    }
+
+    @PostMapping("/search")
+    public List<ProductDTO> search(@RequestBody ProductFilterDTO filter) {
+        return productService.search(filter);
     }
 }
