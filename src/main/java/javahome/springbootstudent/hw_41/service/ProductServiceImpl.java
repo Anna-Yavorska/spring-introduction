@@ -66,10 +66,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductDTO> search(ProductFilterDTO filter) {
-        String nameLike = "%" + filter.getName() + "%";
-        String descriptionLike = "%" + filter.getDescription() + "%";
+        String nameLike = addPercentSigns(filter.getName());
+        String descriptionLike = addPercentSigns(filter.getDescription());
         List<Product> allByNameOrDescription = productRepository.findAllByNameLikeOrDescriptionLike(nameLike, descriptionLike);
         return productConverter.convertToProductDTO(allByNameOrDescription);
     }
 
+    private String addPercentSigns(String string) {
+        string = "%" + string + "%";
+        return string;
+    }
 }
