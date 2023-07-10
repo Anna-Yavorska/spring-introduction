@@ -1,7 +1,7 @@
-package javahome.springbootstudent.hw_40.converter;
+package javahome.springbootstudent.hw_41.converter;
 
-import javahome.springbootstudent.hw_40.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_40.repository.model.Product;
+import javahome.springbootstudent.hw_41.controller.dto.ProductDTO;
+import javahome.springbootstudent.hw_41.repository.model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -17,7 +17,7 @@ public class ProductConverter {
                 source.getPrice());
     }
 
-    public ProductDTO convertToProductDto(Product source) {
+    public ProductDTO convertToProductDTO(Product source) {
         return convertProductToDto(source);
     }
 
@@ -29,10 +29,10 @@ public class ProductConverter {
 
     private ProductDTO convertProductToDto(Product source) {
         ProductDTO result = new ProductDTO();
-        result.setId(source.id());
-        result.setName(source.name());
-        result.setDescription(source.description());
-        result.setPrice(source.price());
+        result.setId(source.getId());
+        result.setName(source.getName());
+        result.setDescription(source.getDescription());
+        result.setPrice(source.getPrice());
         return result;
     }
 }
