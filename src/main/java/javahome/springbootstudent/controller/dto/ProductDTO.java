@@ -1,4 +1,4 @@
-package javahome.springbootstudent.hw_42.controller.dto;
+package javahome.springbootstudent.controller.dto;
 
 
 import jakarta.validation.constraints.Digits;
@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ProductDTO {
     private Integer id;
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]*$")
+   // @Pattern(regexp = "^[a-zA-Z]*$")
     private String name;
     private String description;
     @Digits(integer = 20, fraction = 2)

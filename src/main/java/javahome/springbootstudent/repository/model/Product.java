@@ -1,4 +1,4 @@
-package javahome.springbootstudent.hw_42.repository.model;
+package javahome.springbootstudent.repository.model;
 
 import jakarta.persistence.*;
 

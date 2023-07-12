@@ -1,7 +1,7 @@
-package javahome.springbootstudent.hw_42.service;
+package javahome.springbootstudent.service;
 
-import javahome.springbootstudent.hw_42.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_42.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.controller.dto.ProductDTO;
+import javahome.springbootstudent.controller.dto.ProductFilterDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

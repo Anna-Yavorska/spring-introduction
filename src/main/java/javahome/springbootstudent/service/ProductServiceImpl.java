@@ -1,16 +1,17 @@
-package javahome.springbootstudent.hw_42.service;
+package javahome.springbootstudent.service;
 
-import javahome.springbootstudent.hw_42.controller.dto.ProductFilterDTO;
-import javahome.springbootstudent.hw_42.exception.ProductNotFoundException;
-import javahome.springbootstudent.hw_42.repository.PagingProductRepository;
+import javahome.springbootstudent.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.exception.NotFoundException;
+import javahome.springbootstudent.repository.PagingProductRepository;
+import javahome.springbootstudent.validator.ProductValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-import javahome.springbootstudent.hw_42.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_42.converter.ProductConverter;
-import javahome.springbootstudent.hw_42.repository.SpringDataProductRepository;
-import javahome.springbootstudent.hw_42.repository.model.Product;
+import javahome.springbootstudent.controller.dto.ProductDTO;
+import javahome.springbootstudent.converter.ProductConverter;
+import javahome.springbootstudent.repository.SpringDataProductRepository;
+import javahome.springbootstudent.repository.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -22,16 +23,18 @@ public class ProductServiceImpl implements ProductService {
     private final SpringDataProductRepository productRepository;
     private final ProductConverter productConverter;
     private final PagingProductRepository pagingProductRepository;
+    private final ProductValidator validator;
 
-    public ProductServiceImpl(SpringDataProductRepository springDataSourceProductRepository, ProductConverter productConverter, PagingProductRepository pagingProductRepository) {
+    public ProductServiceImpl(SpringDataProductRepository springDataSourceProductRepository, ProductConverter productConverter, PagingProductRepository pagingProductRepository, ProductValidator validator) {
         this.productRepository = springDataSourceProductRepository;
         this.productConverter = productConverter;
         this.pagingProductRepository = pagingProductRepository;
+        this.validator = validator;
     }
 
     @Override
     public ProductDTO getProductById(Integer id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found: " + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found: " + id));
         return productConverter.convertToProductDTO(product);
     }
 
@@ -43,13 +46,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void deleteProduct(Integer id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found: " + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found: " + id));
         productRepository.delete(product);
     }
 
     @Override
     @Transactional
     public Integer createProduct(ProductDTO productToCreate) {
+        validator.validateProduct(productToCreate);
         Product product = productConverter.convertToEntity(productToCreate);
         Product savedProduct = productRepository.save(product);
         return savedProduct.getId();
@@ -58,7 +62,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public ProductDTO updateProduct(Integer id, ProductDTO productToUpdate) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found: " + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found: " + id));
+        validator.validateProduct(productToUpdate);
         Product entityToUpdate = productConverter.convertToEntity(productToUpdate);
         entityToUpdate.setId(id);
         Product updatedEntity = productRepository.save(entityToUpdate);

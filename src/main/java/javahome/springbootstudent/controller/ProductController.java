@@ -1,9 +1,9 @@
-package javahome.springbootstudent.hw_42.controller;
+package javahome.springbootstudent.controller;
 
 import jakarta.validation.Valid;
-import javahome.springbootstudent.hw_42.controller.dto.ProductFilterDTO;
-import javahome.springbootstudent.hw_42.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_42.service.ProductService;
+import javahome.springbootstudent.controller.dto.ProductDTO;
+import javahome.springbootstudent.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
