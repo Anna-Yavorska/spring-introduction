@@ -1,7 +1,7 @@
-package javahome.springbootstudent.hw_41.converter;
+package javahome.springbootstudent.hw_42.converter;
 
-import javahome.springbootstudent.hw_41.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_41.repository.model.Product;
+import javahome.springbootstudent.hw_42.controller.dto.ProductDTO;
+import javahome.springbootstudent.hw_42.repository.model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

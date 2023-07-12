@@ -1,4 +1,4 @@
-package javahome.springbootstudent.hw_41.controller.dto;
+package javahome.springbootstudent.hw_42.controller.dto;
 
 public class ProductFilterDTO {
     private String name;

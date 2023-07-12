@@ -1,6 +1,6 @@
-package javahome.springbootstudent.hw_41.repository;
+package javahome.springbootstudent.hw_42.repository;
 
-import javahome.springbootstudent.hw_41.repository.model.Product;
+import javahome.springbootstudent.hw_42.repository.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

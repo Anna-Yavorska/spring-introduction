@@ -1,7 +1,9 @@
-package javahome.springbootstudent.hw_41.service;
+package javahome.springbootstudent.hw_42.service;
 
-import javahome.springbootstudent.hw_41.controller.dto.ProductDTO;
-import javahome.springbootstudent.hw_41.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.hw_42.controller.dto.ProductDTO;
+import javahome.springbootstudent.hw_42.controller.dto.ProductFilterDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 import java.util.Collection;
@@ -19,4 +21,6 @@ public interface ProductService {
     ProductDTO updateProduct(Integer id, ProductDTO productToUpdate);
 
     List<ProductDTO> search(ProductFilterDTO filter);
+
+    Page<ProductDTO> getPage(Pageable pageable);
 }

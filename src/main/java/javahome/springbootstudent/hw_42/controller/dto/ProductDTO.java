@@ -1,35 +1,21 @@
-package javahome.springbootstudent.hw_41.repository.model;
+package javahome.springbootstudent.hw_42.controller.dto;
 
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+import java.util.Objects;
+
+
+public class ProductDTO {
     private Integer id;
-    @Column(name="name")
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z]*$")
     private String name;
-    @Column(name="description")
     private String description;
-    @Column(name="price")
+    @Digits(integer = 20, fraction = 2)
     private double price;
-
-    public Product() {
-    }
-
-    public Product(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-    public Product(Integer id, String name, String description, double price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
 
     public Integer getId() {
         return id;
@@ -64,8 +50,21 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductDTO that = (ProductDTO) o;
+        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, price);
+    }
+
+    @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
