@@ -2,7 +2,10 @@ package javahome.springbootstudent.repository.model;
 
 import jakarta.persistence.*;
 
-@Entity
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "shop")
 @Table(name = "shops")
 public class Shop {
     @Id
@@ -11,20 +14,27 @@ public class Shop {
     @Column(name = "name")
     private String name;
     @Column(name = "address_id")
-    private Integer addressId;
+    private Address addressId;
     @Column(name = "phone")
     private String phone;
+    @OneToMany(
+            mappedBy = "shop",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<Employee> employees = new ArrayList<>();
 
     public Shop() {
     }
 
-    public Shop(String name, Integer addressId, String phone) {
+    public Shop(String name, Address addressId, String phone) {
         this.name = name;
         this.addressId = addressId;
         this.phone = phone;
     }
 
-    public Shop(Integer id, String name, Integer addressId, String phone) {
+    public Shop(Integer id, String name, Address addressId, String phone) {
         this.id = id;
         this.name = name;
         this.addressId = addressId;
@@ -47,11 +57,11 @@ public class Shop {
         this.name = name;
     }
 
-    public Integer getAddressId() {
+    public Address getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(Integer addressId) {
+    public void setAddressId(Address addressId) {
         this.addressId = addressId;
     }
 
@@ -61,6 +71,14 @@ public class Shop {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override

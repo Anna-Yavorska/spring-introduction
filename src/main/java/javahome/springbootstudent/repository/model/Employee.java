@@ -3,7 +3,7 @@ package javahome.springbootstudent.repository.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "entity")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,12 +12,31 @@ public class Employee {
     private String name;
     @Column(name = "surname")
     private String surname;
-    @Column(name = "shop_id")
+    @ManyToOne
     private Integer shopId;
     @Column(name = "title")
     private String title;
 
-    public Integer getId() {
+    public Employee() {
+    }
+
+    public Employee(String name, String surname, Integer shopId, String title) {
+        this.name = name;
+        this.surname = surname;
+        this.shopId = shopId;
+        this.title = title;
+    }
+
+    public Employee(Integer id, String name, String surname, Integer shopId, String title) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.shopId = shopId;
+        this.title = title;
+    }
+
+    public Integer getId()
+    {
         return id;
     }
 

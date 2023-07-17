@@ -1,11 +1,13 @@
 package javahome.springbootstudent.controller.dto;
 
+import javahome.springbootstudent.repository.model.Address;
+
 import java.util.Objects;
 
 public class ShopDTO {
     private Integer id;
     private String name;
-    private Integer addressId;
+    private Address addressId;
     private String phone;
 
     public Integer getId() {
@@ -24,11 +26,11 @@ public class ShopDTO {
         this.name = name;
     }
 
-    public Integer getAddressId() {
+    public Address getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(Integer addressId) {
+    public void setAddressId(Address addressId) {
         this.addressId = addressId;
     }
 
