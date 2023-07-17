@@ -13,25 +13,25 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
     @ManyToOne
-    private Integer shopId;
+    private Shop shop;
     @Column(name = "title")
     private String title;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, Integer shopId, String title) {
+    public Employee(String name, String surname, Shop shop, String title) {
         this.name = name;
         this.surname = surname;
-        this.shopId = shopId;
+        this.shop = shop;
         this.title = title;
     }
 
-    public Employee(Integer id, String name, String surname, Integer shopId, String title) {
+    public Employee(Integer id, String name, String surname, Shop shop, String title) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.shopId = shopId;
+        this.shop = shop;
         this.title = title;
     }
 
@@ -60,12 +60,12 @@ public class Employee {
         this.surname = surname;
     }
 
-    public Integer getShopId() {
-        return shopId;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public String getTitle() {
@@ -82,7 +82,7 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", shopId=" + shopId +
+                ", shopId=" + shop +
                 ", title='" + title + '\'' +
                 '}';
     }

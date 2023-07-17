@@ -10,10 +10,18 @@ import java.util.List;
 @Component
 public class ShopConverter {
 
+    private final EmployeeConverter employeeConverter;
+    private final AddressConverter addressConverter;
+
+    public ShopConverter(EmployeeConverter employeeConverter, AddressConverter addressConverter) {
+        this.employeeConverter = employeeConverter;
+        this.addressConverter = addressConverter;
+    }
+
     public Shop convertToEntity(ShopDTO source) {
         Shop result = new Shop();
         result.setName(source.getName());
-        result.setAddressId(source.getAddressId());
+        result.setAddress(addressConverter.convertToEntity(source.getAddress()));
         return result;
     }
 
@@ -31,7 +39,8 @@ public class ShopConverter {
         ShopDTO result = new ShopDTO();
         result.setId(source.getId());
         result.setName(source.getName());
-        result.setAddressId(source.getAddressId());
+        result.setAddress(addressConverter.convertToAddressDTO(source.getAddress()));
+        result.setEmployees(employeeConverter.convertToEmployeeDTO(source.getEmployees()));
         result.setPhone(source.getPhone());
         return result;
     }

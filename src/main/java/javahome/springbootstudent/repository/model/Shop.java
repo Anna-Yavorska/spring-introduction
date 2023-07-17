@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "shop")
+@Entity
 @Table(name = "shops")
 public class Shop {
     @Id
@@ -13,31 +13,35 @@ public class Shop {
     private Integer id;
     @Column(name = "name")
     private String name;
-    @Column(name = "address_id")
-    private Address addressId;
+    @OneToOne
+    //@JoinColumn(name = "address_id")
+    private Address address;
     @Column(name = "phone")
     private String phone;
     @OneToMany(
             mappedBy = "shop",
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
+            orphanRemoval = true
     )
     private List<Employee> employees = new ArrayList<>();
 
     public Shop() {
     }
 
-    public Shop(String name, Address addressId, String phone) {
+    public Shop(Integer id) {
+        this.id = id;
+    }
+
+    public Shop(String name, Address address, String phone) {
         this.name = name;
-        this.addressId = addressId;
+        this.address = address;
         this.phone = phone;
     }
 
-    public Shop(Integer id, String name, Address addressId, String phone) {
+    public Shop(Integer id, String name, Address address, String phone) {
         this.id = id;
         this.name = name;
-        this.addressId = addressId;
+        this.address = address;
         this.phone = phone;
     }
 
@@ -57,12 +61,12 @@ public class Shop {
         this.name = name;
     }
 
-    public Address getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -86,7 +90,7 @@ public class Shop {
         return "Shop{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", addressId=" + addressId +
+                ", addressId=" + address +
                 ", phone='" + phone + '\'' +
                 '}';
     }

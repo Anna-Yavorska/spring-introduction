@@ -2,13 +2,17 @@ package javahome.springbootstudent.controller.dto;
 
 import javahome.springbootstudent.repository.model.Address;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ShopDTO {
     private Integer id;
     private String name;
-    private Address addressId;
+    private AddressDTO address;
     private String phone;
+
+    private List<EmployeeDTO> employees = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -26,12 +30,20 @@ public class ShopDTO {
         this.name = name;
     }
 
-    public Address getAddressId() {
-        return addressId;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
+    public List<EmployeeDTO> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<EmployeeDTO> employees) {
+        this.employees = employees;
     }
 
     public String getPhone() {
@@ -47,12 +59,12 @@ public class ShopDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShopDTO shopDTO = (ShopDTO) o;
-        return Objects.equals(id, shopDTO.id) && Objects.equals(name, shopDTO.name) && Objects.equals(addressId, shopDTO.addressId) && Objects.equals(phone, shopDTO.phone);
+        return Objects.equals(id, shopDTO.id) && Objects.equals(name, shopDTO.name) && Objects.equals(address, shopDTO.address) && Objects.equals(phone, shopDTO.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, addressId, phone);
+        return Objects.hash(id, name, address, phone);
     }
 
     @Override
@@ -60,7 +72,7 @@ public class ShopDTO {
         return "ShopDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", addressId=" + addressId +
+                ", addressId=" + address +
                 ", phone='" + phone + '\'' +
                 '}';
     }
