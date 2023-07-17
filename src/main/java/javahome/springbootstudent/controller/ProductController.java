@@ -3,7 +3,10 @@ package javahome.springbootstudent.controller;
 import jakarta.validation.Valid;
 import javahome.springbootstudent.controller.dto.ProductDTO;
 import javahome.springbootstudent.controller.dto.ProductFilterDTO;
+import javahome.springbootstudent.converter.ProductConverter;
 import javahome.springbootstudent.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductConverter.class);
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -23,6 +27,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDTO getProductById(@PathVariable Integer id) {
+        LOGGER.warn("User can enter non-exists id");
         return productService.getProductById(id);
     }
 
@@ -43,6 +48,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ProductDTO update(@PathVariable Integer id, @RequestBody @Valid ProductDTO productToUpdate) {
+        LOGGER.debug(String.format("Updating product with id %s", id));
         return productService.updateProduct(id, productToUpdate);
     }
 
@@ -53,6 +59,7 @@ public class ProductController {
 
     @GetMapping("/page")
     public Page<ProductDTO> getPages(Pageable pageable) {
+        LOGGER.trace("Request to products by pages");
         return productService.getPage(pageable);
     }
 }
